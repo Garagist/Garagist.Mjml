@@ -1,0 +1,30 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        'Garagist.Mjml': true
+    userInterface:
+      translation:
+        autoInclude:
+          Garagist.Mjml:
+            - 'NodeTypes/*'
+  Fusion:
+    defaultContext:
+      'Garagist.Mjml': 'Garagist\Mjml\Eel\MjmlHelper'
+  Flow:
+    mvc:
+      routes:
+        'Garagist.Mjml':
+          position: 'start'
+    log:
+      psr3:
+        'Neos\Flow\Log\PsrLoggerFactory':
+          'Garagist.Mjml:MjmlLogger':
+            default:
+              class: Neos\Flow\Log\Backend\FileBackend
+              options:
+                logFileURL: '%FLOW_PATH_DATA%Logs/MJML.log'
+                createParentDirectories: true
+                severityThreshold: '%LOG_DEBUG%'
+                maximumLogFileSize: 10485760
+                logFilesToKeep: 1

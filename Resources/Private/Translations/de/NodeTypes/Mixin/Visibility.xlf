@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2"
+    xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="Garagist.Mjml" source-language="en" target-language="de" datatype="plaintext">
+        <body>
+            <trans-unit id="groups.mjml" xml:space="preserve">
+                <source>Newsletter settings</source>
+                <target>Einstellungen Newsletter</target>
+            </trans-unit>
+            <trans-unit id="properties.mjmlVisibility" xml:space="preserve">
+                <source>Visibility</source>
+                <target>Sichtbarkeit</target>
+            </trans-unit>
+            <trans-unit id="properties.mjmlVisibility.selectBoxEditor.placeholder" xml:space="preserve">
+                <source><![CDATA[Newsletter & Website]]></source>
+                <target><![CDATA[Newsletter & Webseite]]></target>
+            </trans-unit>
+            <trans-unit id="properties.mjmlVisibility.selectBoxEditor.values.website" xml:space="preserve">
+                <source>Only on the website</source>
+                <target>Nur auf der Webseite</target>
+            </trans-unit>
+            <trans-unit id="properties.mjmlVisibility.selectBoxEditor.values.newsletter" xml:space="preserve">
+                <source>Only in the newsletter</source>
+                <target>Nur im Newsletter</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

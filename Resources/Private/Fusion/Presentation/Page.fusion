@@ -1,0 +1,107 @@
+prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
+    @propTypes {
+        compile = ${PropTypes.boolean}
+        owa = ${PropTypes.oneOf(['desktop'])}
+        dir = ${PropTypes.string}
+        lang = ${PropTypes.string}
+        backgroundColor = ${PropTypes.string}
+        cssClass = ${${PropTypes.anyOf( PropTypes.string, PropTypes.arrayOf( PropTypes.string ) )}}
+        width = ${PropTypes.integer}
+        title = ${PropTypes.string}
+        attributes = ${PropTypes.string}
+        preview = ${PropTypes.string}
+        breakpoint = ${PropTypes.string}
+        head = ${PropTypes.string}
+        content = ${PropTypes.string.isRequired}
+        debugUrl = ${PropTypes.string}
+        trackingPixel = ${PropTypes.string}
+    }
+
+    @styleguide.props {
+        title = 'Hello World Page'
+        preview = 'Hello World'
+        content = afx`
+            <mj-section>
+                <mj-column>
+                    <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello World</mj-text>
+                    <mj-divider border-color="#F45E43"></mj-divider>
+                </mj-column>
+            </mj-section>
+        `
+    }
+
+    # Compile the MJML to HTML
+    compile = ${!!Configuration.Setting('Garagist.Mjml.apiEndpoint')}
+
+    # If set to "desktop", switch force desktop version for older (self-hosted) version of Outlook.com that doesn't support media queries
+    owa = null
+
+    # Used as <html lang=""> attribute
+    lang = null
+
+    # Used as <html dir=""> attribute
+    dir = null
+
+    # the general background color (color formats)
+    backgroundColor = null
+
+    # Class name, added to the root HTML element created
+    cssClass = null
+
+    # Email's width in px
+    width = 600
+
+    # Defines the document's title that browsers show in the title bar or a page's tab.
+    title = null
+
+    # This allows you to set the preview that will be displayed in the inbox of the recipient.
+    preview = null
+
+    # https://documentation.mjml.io/#mj-attributes
+    attributes = null
+
+    # This allows you to control on which breakpoint the layout should go desktop/mobile. Integer value in pixels.
+    breakpoint = null
+
+    # The head section of the email
+    head = null
+
+    # The content section of the email
+    content = null
+
+    # Add the markup for the tracking pixel
+    trackingPixel = ${Configuration.Setting('Garagist.Mjml.options.trackingPixel')}
+
+    # Debug url for logging
+    debugUrl = null
+
+    renderer = Neos.Fusion:Http.Message {
+        httpResponseHead.headers.'Content-Type' = ${props.compile ? 'text/html' : 'text/xml'}
+        @process.compile = ${props.compile ? Garagist.Mjml.compile(value, props.debugUrl) : value}
+        content = afx`
+            <mjml
+                owa={props.owa}
+                lang={props.lang}
+                dir={props.dir}
+            >
+                <mj-head>
+                    <mj-title @if={props.title} css-class="headline">{props.title}</mj-title>
+                    <mj-preview @if={props.preview}>{props.preview}</mj-preview>
+                    <mj-attributes @if={props.attributes}>{props.attributes}</mj-attributes>
+                    <mj-breakpoint @if={props.breakpoint}>{props.breakpoint}px</mj-breakpoint>
+                    {props.head}
+                </mj-head>
+                <mj-body
+                    background-color={props.backgroundColor}
+                    css-class={Carbon.String.merge(props.cssClass)}
+                    width={props.width ? props.width + 'px' : null}
+                >
+                    {props.content}
+                    <mj-raw @if={props.trackingPixel}>
+                        {props.trackingPixel}
+                    </mj-raw>
+                </mj-body>
+            </mjml>
+        `
+    }
+}

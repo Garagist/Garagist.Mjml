@@ -1,0 +1,7 @@
+Garagist:
+  Mjml:
+    apiEndpoint: '%env:MJML_API_ENDPOINT%'
+  Mautic:
+    routeArgument:
+      htmlTemplate: mjml
+      plaintextTemplate: plaintext

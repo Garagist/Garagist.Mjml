@@ -1,0 +1,39 @@
+prototype(Garagist.Mjml:Page) < prototype(Neos.Fusion:Component) {
+    language = ${String.replace(documentNode.context.dimensions.language[0], '_', '-')}
+    title = ${q(documentNode).property('titleOverride') || q(documentNode).property('title')}
+
+    debugUrl = Neos.Neos:NodeUri {
+        node = ${documentNode}
+        absolute = true
+        additionalParams = ${{mjml: true}}
+    }
+
+    prototype(Neos.Neos:NodeUri) {
+        absolute = true
+    }
+    prototype(Neos.Neos:ConvertUris) {
+        absolute = true
+        forceConversion = true
+        externalLinkTarget = ''
+        resourceLinkTarget = ''
+    }
+
+    renderer = Garagist.Mjml:Presentation.Page {
+        @apply.props = ${props}
+        @process.convert = Neos.Neos:ConvertUris {
+            absolute = true
+            forceConversion = true
+            externalLinkTarget = ''
+            resourceLinkTarget = ''
+        }
+    }
+
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'site'
+            2 = 'node'
+            3 = 'documentNode'
+        }
+    }
+}

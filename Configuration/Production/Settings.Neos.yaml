@@ -1,0 +1,9 @@
+Neos:
+  Flow:
+    log:
+      psr3:
+        'Neos\Flow\Log\PsrLoggerFactory':
+          'Garagist.Mjml:MjmlLogger':
+            default:
+              options:
+                severityThreshold: '%LOG_INFO%'

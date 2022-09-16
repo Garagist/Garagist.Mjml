@@ -1,0 +1,7 @@
+prototype(Neos.Neos:ContentComponent) {
+    @if.mjmlVisibility = Garagist.Mjml:Helper.Visibility
+}
+
+prototype(Neos.Neos:Content) {
+    @if.mjmlVisibility = Garagist.Mjml:Helper.Visibility
+}

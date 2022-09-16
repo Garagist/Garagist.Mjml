@@ -1,0 +1,26 @@
+prototype(Garagist.Mjml:Helper.Visibility) < prototype(Neos.Fusion:Component) {
+    node = ${node}
+
+    visibility = ${q(this.node).property('mjmlVisibility')}
+
+    inBackend = ${this.node.context.inBackend}
+
+    renderer = Neos.Fusion:Case {
+        showInBackend {
+            condition = ${props.inBackend}
+            renderer = true
+        }
+        showOnlyOnNewsletter {
+            condition = ${props.visibility == 'newsletter'}
+            renderer = ${!!request.arguments.mjml || !!request.arguments.plaintext}
+        }
+        showOnlyOnWebsite {
+            condition = ${props.visibility == 'website'}
+            renderer = ${!request.arguments.mjml && !request.arguments.plaintext}
+        }
+        default {
+            condition = true
+            renderer = true
+        }
+    }
+}

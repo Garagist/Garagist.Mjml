@@ -1,0 +1,12 @@
+- name: 'MJML View'
+  uriPattern: '{node}.mjml'
+  defaults:
+    '@package': 'Neos.Neos'
+    '@controller': 'Frontend\Node'
+    '@action': 'show'
+    '@format': 'html'
+    'mjml': true
+  appendExceedingArguments: true
+  routeParts:
+    node:
+      handler: 'Neos\Neos\Routing\FrontendNodeRoutePartHandlerInterface'
