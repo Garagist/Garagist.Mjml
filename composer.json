@@ -5,8 +5,11 @@
     "license": "GPL-3.0-or-later",
     "require": {
         "neos/neos": "^7.3 || ^8.0",
-        "carbon/eel": "^2.0",
-        "ext-mbstring": "*"
+        "garagist/plaintext": "^0.1",
+        "carbon/eel": "^2.0"
+    },
+    "suggest": {
+        "garagist/mautic": "To use the Mautic integration"
     },
     "authors": [
         {
