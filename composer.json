@@ -1,0 +1,24 @@
+{
+    "description": "Integrate MJML into Neos. Works great togehter with Garagist.Mautic",
+    "type": "neos-plugin",
+    "name": "garagist/mjml",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "neos/neos": "^7.3 || ^8.0",
+        "carbon/eel": "^2.0",
+        "ext-mbstring": "*"
+    },
+    "authors": [
+        {
+            "name": "Jon Uhlmann",
+            "email": "hello@uhlmann.pro",
+            "homepage": "https://www.uhlmann.pro",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Garagist\\Mjml\\": "Classes"
+        }
+    }
+}
