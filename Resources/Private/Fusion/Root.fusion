@@ -3,7 +3,7 @@ include: **/*.fusion
 root {
     mjml {
         @position = 'start 1'
-        condition = ${request.arguments.mjmlHtml}
+        condition = ${request.arguments.mjml}
         type = ${q(node).property('_nodeType.name') + '.Mjml'}
     }
     @cache.entryIdentifier.mjml = ${request.arguments.mjml ? 'mjml' : 'default'}
