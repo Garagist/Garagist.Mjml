@@ -32,7 +32,7 @@ services:
       - HEALTHCHECK=false
 ```
 
-After that, your MJML endpoint is something like `ddev-YOUR_DDEV_NAME-mjml:80`
+After that, your MJML endpoint is something like `ddev-DDEV_SITENAME-mjml:80`
 
 [packagist]: https://packagist.org/packages/garagist/mjml
 [latest stable version]: https://poser.pugx.org/garagist/mjml/v/stable
