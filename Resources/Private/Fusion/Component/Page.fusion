@@ -1,5 +1,7 @@
 prototype(Garagist.Mjml:Page) < prototype(Neos.Fusion:Component) {
-    language = ${String.replace(documentNode.context.dimensions.language[0], '_', '-')}
+    language = null
+    languageDimension = 'language'
+
     title = ${q(documentNode).property('titleOverride') || q(documentNode).property('title')}
 
     debugUrl = Neos.Neos:NodeUri {
@@ -20,6 +22,22 @@ prototype(Garagist.Mjml:Page) < prototype(Neos.Fusion:Component) {
 
     renderer = Garagist.Mjml:Presentation.Page {
         @apply.props = ${props}
+        lang = Neos.Fusion:Case {
+            @process.convert = ${value ? String.replace(value, '_', '-') : null}
+            hasLanguage {
+                condition = ${props.language}
+                renderer = ${props.language}
+            }
+            hasDimension {
+                condition = ${props.languageDimension && Configuration.setting('Neos.ContentRepository.contentDimensions.' + props.languageDimension) != null}
+                renderer = ${documentNode.context.dimensions[props.languageDimension][0]}
+            }
+            hasDefaultLocale {
+                defaultLocale = ${Configuration.setting('Neos.Flow.i18n.defaultLocale')}
+                condition = ${this.defaultLocale}
+                renderer = ${this.defaultLocale}
+            }
+        }
         @process.convert = Neos.Neos:ConvertUris {
             absolute = true
             forceConversion = true
