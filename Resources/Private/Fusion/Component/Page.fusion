@@ -10,6 +10,36 @@ prototype(Garagist.Mjml:Page) < prototype(Neos.Fusion:Component) {
         additionalParams = ${{mjml: true}}
     }
 
+    prototype(Neos.Neos:ContentCase) {
+        mjml {
+            condition = Neos.Fusion:CanRender {
+                type = ${node.nodeType.name + '.Mjml'}
+            }
+            type = ${node.nodeType.name + '.Mjml'}
+        }
+        mjmlDebug {
+            condition = true
+            renderer = Neos.Fusion:Component {
+                debugOutputMode = ${Configuration.setting('Garagist.Mjml.debugOutputMode')}
+                text = 'No MJML renderer found for node type'
+                name = ${node.nodeType.name}
+                renderer = afx`
+                    <mj-section @if={props.debugOutputMode == true} background-color="#b91c1c">
+                        <mj-column>
+                            <mj-text align="center" color="#fff" font-size="16px">
+                                {props.text} <br />
+                                <code style="font-size:20px">{props.name}</code>
+                            </mj-text>
+                        </mj-column>
+                    </mj-section>
+                    <Neos.Fusion:Fragment @if={props.debugOutputMode == 'comment'}>
+                        {'<!--'}{props.text} {props.name}{'-->'}
+                    </Neos.Fusion:Fragment>
+                `
+            }
+        }
+    }
+
     prototype(Neos.Neos:NodeUri) {
         absolute = true
     }
