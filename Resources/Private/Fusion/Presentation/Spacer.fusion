@@ -9,17 +9,18 @@ prototype(Garagist.Mjml:Presentation.Spacer) < prototype(Neos.Fusion:Component) 
 
     @if.hasHeight = ${this.height}
 
-    renderer = afx`
-        <mj-section
-            full-width={props.fullWidth ? "full-width" : null}
-            padding="0"
-            {...props}
-            fullWidth={false}
-            height={false}
-        >
-            <mj-column>
+    renderer = Neos.Fusion:Tag {
+        tagName = 'mj-section'
+        attributes {
+            full-width = ${props.fullWidth ? 'full-width' : null}
+            padding = '0'
+            @apply.props = ${props}
+            @ignoreProperties = ${['fullWidth', 'height']}
+        }
+        content = afx`
+             <mj-column>
                 <mj-spacer height={props.height + "px"} />
             </mj-column>
-        </mj-section>
-    `
+        `
+    }
 }
