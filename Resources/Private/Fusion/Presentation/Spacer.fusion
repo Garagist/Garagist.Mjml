@@ -1,0 +1,23 @@
+prototype(Garagist.Mjml:Presentation.Spacer) < prototype(Neos.Fusion:Component) {
+    @propTypes {
+        height = ${PropTypes.integer.isRequired}
+        fullWidth = ${PropTypes.boolean}
+    }
+
+    height = 40
+    fullWidth = false
+
+    renderer = afx`
+        <mj-section
+            full-width={props.fullWidth ? "full-width" : null}
+            padding="0"
+            {...props}
+            fullWidth={false}
+            height={false}
+        >
+            <mj-column>
+                <mj-spacer height={props.height + "px"} />
+            </mj-column>
+        </mj-section>
+    `
+}
