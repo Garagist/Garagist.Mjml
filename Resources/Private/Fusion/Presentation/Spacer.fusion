@@ -7,6 +7,8 @@ prototype(Garagist.Mjml:Presentation.Spacer) < prototype(Neos.Fusion:Component) 
     height = 40
     fullWidth = false
 
+    @if.hasHeight = ${this.height}
+
     renderer = afx`
         <mj-section
             full-width={props.fullWidth ? "full-width" : null}
