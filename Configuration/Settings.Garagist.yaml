@@ -1,6 +1,14 @@
 Garagist:
   Mjml:
     apiEndpoint: '%env:MJML_API_ENDPOINT%'
+    theme:
+      defaults:
+        color: '#000'
+        font-size: 14px
+        line-height: 1.5
+        font-family: 'Ubuntu, Helvetica, Arial, sans-serif;'
+      colors: []
+      fontSize: []
   Mautic:
     routeArgument:
       htmlTemplate: mjml

@@ -60,6 +60,9 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
     # https://documentation.mjml.io/#mj-attributes
     attributes = null
 
+    # https://documentation.mjml.io/#mj-html-attributes
+    htmlAttributes = null
+
     # This allows you to control on which breakpoint the layout should go desktop/mobile. Integer value in pixels.
     breakpoint = null
 
@@ -75,8 +78,12 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
     # Debug url for logging
     debugUrl = null
 
+    colors = ${Configuration.Setting('Garagist.Mjml.theme.colors')}
+    fontSize = ${Configuration.Setting('Garagist.Mjml.theme.fontSize')}
+    defaults = ${Configuration.Setting('Garagist.Mjml.theme.defaults')}
+
     renderer = Neos.Fusion:Http.Message {
-        httpResponseHead.headers.'Content-Type' = ${props.compile ? 'text/html' : 'text/xml'}
+        httpResponseHead.headers.'Content-Type' = 'text/html'
         content = afx`
             <mjml
                 owa={props.owa}
@@ -87,7 +94,107 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
                 <mj-head>
                     <mj-title @if={props.title} css-class="headline">{props.title}</mj-title>
                     <mj-preview @if={props.preview}>{props.preview}</mj-preview>
-                    <mj-attributes @if={props.attributes}>{props.attributes}</mj-attributes>
+                    <mj-attributes>
+                        {props.attributes}
+                        <Neos.Fusion:Loop
+                            @if={Carbon.Array.check(props.defaults)}
+                            items={props.defaults}
+                        >
+                            {'<mj-all '}{itemKey}="{item}"{' />'}
+                        </Neos.Fusion:Loop>
+                        <Neos.Fusion:Loop
+                            @if={Carbon.Array.check(props.fontSize)}
+                            items={props.fontSize}
+                        >
+                            <mj-class @if={!Type.isArray(item)} name={"text-" + itemKey} font-size={item + 'px'} />
+                            <mj-class @if={Type.isArray(item)} name={"text-" + itemKey} font-size={item.pixel + 'px'} line-height={item.lineHeight} />
+                        </Neos.Fusion:Loop>
+                        <Neos.Fusion:Loop
+                            @if={Carbon.Array.check(props.colors)}
+                            items={props.colors}
+                            itemName="main"
+                            itemKey="mainKey"
+                        >
+                            <mj-class
+                                @if={Type.isString(main)}
+                                name={"text-" + mainKey}
+                                color={main}
+                            />
+                            <mj-class
+                                @if={Type.isString(main)}
+                                name={"bg-" + mainKey}
+                                background-color={main}
+                            />
+                            <mj-class
+                                @if={Type.isString(main)}
+                                name={"container-bg-" + mainKey}
+                                container-background-color={main}
+                            />
+                            <mj-class
+                                @if={Type.isString(main)}
+                                name={"inner-bg-" + mainKey}
+                                inner-background-color={main}
+                            />
+                            <Neos.Fusion:Loop @if={Carbon.Array.check(main)} items={main}>
+                                <mj-class
+                                    @if={Type.isString(item) && itemKey != 'DEFAULT'}
+                                    name={"text-" + mainKey + "-" + itemKey}
+                                    color={item}
+                                />
+                                <mj-class
+                                    @if={Type.isString(item) && itemKey == 'DEFAULT'}
+                                    name={"text-" + mainKey}
+                                    color={item}
+                                />
+                                <mj-class
+                                    @if={Type.isString(item) && itemKey != 'DEFAULT'}
+                                    name={"bg-" + mainKey + "-" + itemKey}
+                                    background-color={item}
+                                />
+                                <mj-class
+                                    @if={Type.isString(item) && itemKey == 'DEFAULT'}
+                                    name={"bg-" + mainKey}
+                                    background-color={item}
+                                />
+                                <mj-class
+                                    @if={Type.isString(item) && itemKey != 'DEFAULT'}
+                                    name={"container-bg-" + mainKey + "-" + itemKey}
+                                    container-background-color={item}
+                                />
+                                <mj-class
+                                    @if={Type.isString(item) && itemKey == 'DEFAULT'}
+                                    name={"container-bg-" + mainKey}
+                                    container-background-color={item}
+                                />
+                                <mj-class
+                                    @if={Type.isString(item) && itemKey != 'DEFAULT'}
+                                    name={"inner-bg-" + mainKey + "-" + itemKey}
+                                    inner-background-color={item}
+                                />
+                                <mj-class
+                                    @if={Type.isString(item) && itemKey == 'DEFAULT'}
+                                    name={"inner-bg-" + mainKey}
+                                    inner-background-color={item}
+                                />
+                            </Neos.Fusion:Loop>
+                        </Neos.Fusion:Loop>
+                    </mj-attributes>
+
+                    <mj-html-attributes @if={props.htmlAttributes && Type.isString(props.htmlAttributes)}>{props.htmlAttributes}</mj-html-attributes>
+                    <mj-html-attributes @if={Carbon.Array.check(props.htmlAttributes)}>
+                        <Neos.Fusion:Loop items={props.htmlAttributes}>
+                            <mj-selector path={itemKey}>
+                                <Neos.Fusion:Loop items={item}>
+                                    <mj-html-attribute name={itemKey}>{item}</mj-html-attribute>
+                                </Neos.Fusion:Loop>
+                            </mj-selector>
+                        </Neos.Fusion:Loop>
+                    </mj-html-attributes>
+
+                    <Neos.Fusion:Loop @if={Carbon.Array.check(props.font)} items={props.font}>
+                        <mj-font name={itemKey} href={item} />
+                    </Neos.Fusion:Loop>
+
                     <mj-breakpoint @if={props.breakpoint}>{props.breakpoint}px</mj-breakpoint>
                     {props.head}
                 </mj-head>
