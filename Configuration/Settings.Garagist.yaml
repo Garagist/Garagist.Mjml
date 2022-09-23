@@ -1,6 +1,11 @@
 Garagist:
   Mjml:
     apiEndpoint: '%env:MJML_API_ENDPOINT%'
+
+    # Output the node type name of an content element who has no dedicated rendering
+    # Can be true, false or 'comment'
+    debugOutputMode: true
+
     theme:
       defaults:
         color: '#000'

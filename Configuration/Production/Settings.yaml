@@ -1,3 +1,7 @@
+Garagist:
+  Mjml:
+    debugOutputMode: false
+
 Neos:
   Flow:
     log:
