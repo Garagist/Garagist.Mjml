@@ -4,7 +4,7 @@ root {
     mjml {
         @position = 'start 1'
         condition = ${request.arguments.mjml}
-        type = ${q(node).property('_nodeType.name') + '.Mjml'}
+        type = ${node.nodeType.name + '.Mjml'}
     }
     @cache.entryIdentifier.mjml = ${request.arguments.mjml ? 'mjml' : 'default'}
 }
