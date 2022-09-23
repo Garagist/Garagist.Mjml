@@ -1,0 +1,31 @@
+prototype(Garagist.Mjml:Presentation.Image) < prototype(Neos.Fusion:Component) {
+    @propTypes {
+        carousel = ${PropTypes.boolean}
+    }
+
+    image = Neos.Fusion:DataStructure {
+        # Properties from Neos.Neos:ImageUri
+        assset = null
+    }
+    thumbnail = Neos.Fusion:DataStructure {
+        # Only used if carousel is true
+        # Properties from Neos.Neos:ImageUri
+        assset = null
+    }
+    carousel = false
+
+    renderer = Neos.Fusion:Tag {
+        tagName = ${props.carousel ? 'mj-carousel-image' : 'mj-image'}
+        attributes {
+            @ignoreProperties = ${['carousel', 'image', 'thumbnail']}
+            @apply.props = ${props}
+            thumbnails-src = Neos.Neos:ImageUri {
+                @if.isCarousel = ${props.carousel && props.thumbnail.asset}
+                @apply.thumbnail = ${props.thumbnail}
+            }
+            src = Neos.Neos:ImageUri {
+                @apply.image = ${props.image}
+            }
+        }
+    }
+}
