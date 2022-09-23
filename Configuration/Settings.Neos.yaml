@@ -10,7 +10,7 @@ Neos:
             - 'NodeTypes/*'
   Fusion:
     defaultContext:
-      'Garagist.Mjml': 'Garagist\Mjml\Eel\MjmlHelper'
+      'Mjml': 'Garagist\Mjml\Eel\MjmlHelper'
   Flow:
     mvc:
       routes:

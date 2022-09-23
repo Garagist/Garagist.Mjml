@@ -82,7 +82,7 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
                 owa={props.owa}
                 lang={props.lang}
                 dir={props.dir}
-                @process.compile={props.compile ? Garagist.Mjml.compile(value, props.debugUrl) : value}
+                @process.compile={props.compile ? Mjml.compile(value, props.debugUrl) : value}
             >
                 <mj-head>
                     <mj-title @if={props.title} css-class="headline">{props.title}</mj-title>
