@@ -6,7 +6,29 @@
 
 ## Usage
 
-This package is ment to used with [Docker] and the [MJML image from Adrian Rudnik].
+You can use this package with the offical API from [MJML] or with [Docker] and the [MJML image from Adrian Rudnik].
+
+### Use with the offical API from MJML
+
+To use it with the MJML API, set `apiEndpoint` to `true`. You have also to set the `applicationID` and the `secretKey`. If you don't want to use the enviroments variables, you can simply over them in your `Settings.yaml` file.
+
+```yaml
+Garagist:
+  Mjml:
+    apiEndpoint: true
+    applicationID: "%env:MJML_API_APPLICATION_ID%"
+    secretKey: "%env:MJML_API_SECRET_KEY%"
+```
+
+### Use with docker
+
+Simply set the enviroment variable `MJML_API_ENDPOINT`, or set it in your `Settings.yaml`:
+
+```yaml
+Garagist:
+  Mjml:
+    apiEndpoint: "mjml:80"
+```
 
 ### Development with ddev
 
