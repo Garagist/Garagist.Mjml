@@ -1,6 +1,10 @@
 Garagist:
   Mjml:
+    # If set to 'true', the API from mjml.io will be used to render the email
+    # If you want to use the API from mjml.io, you will need to register at https://mjml.io/, get an API key, set the applicationID and the secretKey
     apiEndpoint: '%env:MJML_API_ENDPOINT%'
+    applicationID: '%env:MJML_API_APPLICATION_ID%'
+    secretKey: '%env:MJML_API_SECRET_KEY%'
 
     # Output the node type name of an content element who has no dedicated rendering
     # Can be true, false or 'comment'

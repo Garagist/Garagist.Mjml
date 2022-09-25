@@ -4,6 +4,7 @@
     "name": "garagist/mjml",
     "license": "GPL-3.0-or-later",
     "require": {
+        "php": "^8.0",
         "neos/neos": "^7.3 || ^8.0",
         "garagist/plaintext": "^0.1",
         "carbon/eel": "^2.0"
