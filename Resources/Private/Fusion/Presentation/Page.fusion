@@ -55,6 +55,7 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
     title = null
 
     # This allows you to set the preview that will be displayed in the inbox of the recipient.
+    # If you use Garagist.Mautic, there is no need to set this, as it will be set automatically
     preview = null
 
     # https://documentation.mjml.io/#mj-attributes
@@ -73,6 +74,7 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
     content = null
 
     # Add the markup for the tracking pixel
+    # If you use Garagist.Mautic, there is no need to set this, as it will be set automatically
     trackingPixel = ${Configuration.Setting('Garagist.Mjml.trackingPixel')}
 
     # Debug url for logging
