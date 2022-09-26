@@ -104,7 +104,7 @@ All properties except `carousel`, `image` and `thumbnail` are transferred to [`m
 
 ### [`Garagist.Mjml:Page`]
 
-This prototype sets the following properties:
+This prototype uses [`Garagist.Mjml:Presentation.Page`] and sets the following properties:
 
 - `language`
   - If `language` is set, this will be used as the language.
@@ -132,6 +132,27 @@ Furthermore, various prototypes will be adapted:
 
 ## Eel helper
 
+### `Mjml.compile(mjml, url)`
+
+Compile the `mjml` string to HTML. The `url` is for the log output.
+
+### `Mjml.theme(path)`
+
+Get the setting from `Garagist.Mjml.theme`. It is similar to the eel helper `Configuration.setting` with only special treatment for `DEFAULT` values: If you have set this colors:
+
+```yaml
+Garagist:
+  Mjml:
+    theme:
+      colors:
+        tahiti:
+          light: "#67e8f9"
+          DEFAULT: "#06b6d4"
+          dark: "#0e7490"
+```
+
+`Mjml.theme('colors.tahiti')` will return `#06b6d4` as this is the default value. The other values like `Mjml.theme('colors.tahiti.dark')` etc. will return the corresponding color. In short, it works similar to the [`theme()`] function in TailwindCSS.
+
 [packagist]: https://packagist.org/packages/garagist/mjml
 [latest stable version]: https://poser.pugx.org/garagist/mjml/v/stable
 [github issues]: https://img.shields.io/github/issues/Garagist/Garagist.Mjml
@@ -158,3 +179,4 @@ Furthermore, various prototypes will be adapted:
 [`neos.neos:imageuri`]: https://neos.readthedocs.io/en/stable/References/NeosFusionReference.html#neos-neos-imageuri
 [`garagist.mjml:presentation.page`]: Resources/Private/Fusion/Presentation/Page.fusion
 [`garagist.mjml:page`]: Resources/Private/Fusion/Component/Page.fusion
+[`theme()`]: https://tailwindcss.com/docs/functions-and-directives#theme
