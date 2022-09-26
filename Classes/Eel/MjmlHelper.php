@@ -67,9 +67,9 @@ class MjmlHelper implements ProtectedContextAwareInterface
     }
 
     /**
-     * Compile the html with MJML
+     * Compile with MJML
      *
-     * @param string $html
+     * @param string $mjml
      * @param string|null $url for log output
      * @return string
      */
