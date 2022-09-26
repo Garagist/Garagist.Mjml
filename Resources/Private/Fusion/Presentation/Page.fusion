@@ -42,7 +42,7 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
     # Used as <html dir=""> attribute
     dir = null
 
-    # the general background color (color formats)
+    # The general background color (color formats)
     backgroundColor = null
 
     # Class name, added to the root HTML element created
@@ -80,10 +80,10 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
     # Debug url for logging
     debugUrl = null
 
+    defaults = ${Configuration.Setting('Garagist.Mjml.theme.defaults')}
     colors = ${Configuration.Setting('Garagist.Mjml.theme.colors')}
     fontSize = ${Configuration.Setting('Garagist.Mjml.theme.fontSize')}
     fontWeight = ${Configuration.Setting('Garagist.Mjml.theme.fontWeight')}
-    defaults = ${Configuration.Setting('Garagist.Mjml.theme.defaults')}
 
     renderer = Neos.Fusion:Http.Message {
         httpResponseHead.headers.'Content-Type' = 'text/html'
