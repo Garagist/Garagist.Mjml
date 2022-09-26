@@ -102,11 +102,92 @@ All properties except `carousel`, `image` and `thumbnail` are transferred to [`m
 
 ### [`Garagist.Mjml:Presentation.Page`]
 
+This is the heart of the Fusion MJML prototypes. It generates the `MJML` code, which is compiled to `HTML`. It has the following properties:
+
+| Property          | Description                                                                                                                                                                                                        | Default                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| `owa`             | If set to `"desktop"`, switch force desktop version for older (self-hosted) version of Outlook.com that doesn't support media queries                                                                              | `null`                                                    |
+| `lang`            | Used as `<html lang="">` attribute                                                                                                                                                                                 | `null`                                                    |
+| `dir`             | Used as `<html dir="">` attribute                                                                                                                                                                                  | `null`                                                    |
+| `backgroundColor` | The general background color (color formats)                                                                                                                                                                       | `null`                                                    |
+| `cssClass`        | Class name, added to the root HTML element created                                                                                                                                                                 | `null`                                                    |
+| `width`           | Email's width in px                                                                                                                                                                                                | `600`                                                     |
+| `title`           | Defines the document's title that browsers show in the title bar or a page's tab.                                                                                                                                  | `null`                                                    |
+| `preview`         | This allows you to set the preview that will be displayed in the inbox of the recipient. If you use [Garagist.Mautic], there is no need to set this, as it will be set automatically                               | `null`                                                    |
+| `attributes`      | Set [`mj-attributes`] in the [`mj-head`]                                                                                                                                                                           | `null`                                                    |
+| `htmlAttributes`  | Set [`mj-html-attributes`] in the [`mj-head`]. Need to be a nested DataStructure where the first key is the `mj-selector` and the children are `mj-html-attribute` (`itemKey` is the name and `item` is the value) | `null`                                                    |
+| `breakpoint`      | This allows you to control on which breakpoint the layout should go desktop/mobile. Integer value in pixels.                                                                                                       | `null`                                                    |
+| `head`            | Additional tags for [`mj-head`]                                                                                                                                                                                    | `null`                                                    |
+| `content`         | The content section of the email                                                                                                                                                                                   | `null`                                                    |
+| `trackingPixel`   | Add the markup for the tracking pixel. If you use [Garagist.Mautic], there is no need to set this, as it will be set automatically                                                                                 | `Configuration.setting('Garagist.Mjml.trackingPixel')`    |
+| `debugUrl`        | Debug url for logging                                                                                                                                                                                              | `null`                                                    |
+| `defaults`        | Set some default CSS setting for the email. Take a look to [`Settings.Garagist.yaml`] to see the defaults.                                                                                                         | `Configuration.setting('Garagist.Mjml.theme.defaults')`   |
+| `colors`          | Adds colors as [`mj-class`]. More about this below. Take a look to [`Settings.Garagist.yaml`] to see the defaults.                                                                                                 | `Configuration.setting('Garagist.Mjml.theme.colors')`     |
+| `fontSize`        | Adds font sizes as [`mj-class`]. More about this below. Take a look to [`Settings.Garagist.yaml`] to see the defaults.                                                                                             | `Configuration.setting('Garagist.Mjml.theme.fontSize')`   |
+| `fontWeight`      | Adds font weights as [`mj-class`]. More about this below. Take a look to [`Settings.Garagist.yaml`] to see the defaults.                                                                                           | `Configuration.setting('Garagist.Mjml.theme.fontWeight')` |
+
+#### Colors
+
+Adds multiple [`mj-class`] tags for each set colors. Here, the color key is prefixed to control each property. Let's assume the following configuration:
+
+```yaml
+Garagist:
+  Mjml:
+    theme:
+      colors:
+        black: "#000"
+        tahiti:
+          light: "#67e8f9"
+          DEFAULT: "#06b6d4"
+          dark: "#0e7490"
+```
+
+With `<mj-text mj-class="text-black">` the text color is set to black. With `<mj-text mj-class="text-tahiti-light">` the text color is set to `#67e8f9`. A special case is the `DEFAULT` value: This can be reached without specifying `DEFAULT`: `<mj-text mj-class="text-tahiti">`.
+
+- `text-COLOR-PATH` sets `color`
+- `bg-COLOR-PATH` sets `background-color`
+- `container-bg-COLOR-PATH` sets `container-background-color`
+- `inner-bg-COLOR-PATH` sets `inner-background-color`
+
+#### Font sizes
+
+Adds multiple [`mj-class`] tags for each set font sizes. Let's assume the following configuration:
+
+```yaml
+Garagist:
+  Mjml:
+    theme:
+      fontSize:
+        xs:
+          pixel: 12
+          lineHeight: 16px
+        sm: 14
+```
+
+With `<mj-text mj-class="text-xs">` you'll set the font size to 12 pixel and the line height to 16px.
+With `<mj-text mj-class="text-sm">` you'll set the font size to 14 pixel.
+
+#### Font weights
+
+Adds multiple [`mj-class`] tags for each set font weight. Let's assume the following configuration:
+
+```yaml
+Garagist:
+  Mjml:
+    theme:
+      fontWeight:
+        normal: 400
+        semibold: 600
+```
+
+With `<mj-text mj-class="font-normal">` you'll set the font weight to `400`.
+With `<mj-text mj-class="font-semibold">` you'll set the font weight to `600`.
+
 ### [`Garagist.Mjml:Page`]
 
 This prototype uses [`Garagist.Mjml:Presentation.Page`] and sets the following properties:
 
-- `language`
+- `language`: Set the `lang` attribute from the `<html>` tag
   - If `language` is set, this will be used as the language.
   - If `languageDimension` (set to `language` by default) is present, the language of the `documentNode` will be used.
   - If no language dimension is set, `Neos.Flow.i18n.defaultLocale` will be used as language.
@@ -181,3 +262,9 @@ Garagist:
 [`garagist.mjml:page`]: Resources/Private/Fusion/Component/Page.fusion
 [`theme()`]: https://tailwindcss.com/docs/functions-and-directives#theme
 [tailwindcss]: https://tailwindcss.com
+[garagist.mautic]: https://github.com/Garagist/Garagist.Mautic
+[`mj-attributes`]: https://documentation.mjml.io/#mj-attributes
+[`mj-html-attributes`]: https://documentation.mjml.io/#mj-html-attributes
+[`mj-head`]: https://documentation.mjml.io/#mj-head
+[`settings.garagist.yaml`]: Configuration/Settings.Garagist.yaml
+[`mj-class`]: https://documentation.mjml.io/#mj-attributes
