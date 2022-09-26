@@ -102,6 +102,34 @@ All properties except `carousel`, `image` and `thumbnail` are transferred to [`m
 
 ### [`Garagist.Mjml:Page`]
 
+This prototype sets the following properties:
+
+- `language`
+  - If `language` is set, this will be used as the language.
+  - If `languageDimension` (set to `language` by default) is present, the language of the `documentNode` will be used.
+  - If no language dimension is set, `Neos.Flow.i18n.defaultLocale` will be used as language.
+  - If none of the above can be set, no language will be defined.
+- `title`: Try to get the property `titleOverride` or `title` from the `documentNode`
+- `debugUrl`: Generates the URL of the current URL for the log output
+
+Furthermore, various prototypes will be adapted:
+
+- `Neos.Neos:ContentCase`
+  - Checks if there is a prototype with `.Mjml` (e.g. `Foo.Bar:Content.Text.Mjml`) and outputs it.
+  - If no prototype is found, it creates a message that the renderer was not found, based on the `Garagist.Mjml.debugOutputMode` setting. The following values are possible:
+    - `true`: Creates a visible warning message
+    - `comment`: Creates a HTML comment with the warning
+    - `false`: Does not output a warning message
+  - By default, the visible warning is issued in the `Development` context, and the warning is hidden in the `Production` context.
+- `Neos.Neos:NodeUri`: Set `absolute` to `true`
+- `Neos.Neos:ConvertUris`:
+  - Set `absolute` to `true`
+  - Set `forceConversion` to `true`
+  - Set `externalLinkTarget` to `''`
+  - Set `resourceLinkTarget` to `''`
+
+## Eel helper
+
 [packagist]: https://packagist.org/packages/garagist/mjml
 [latest stable version]: https://poser.pugx.org/garagist/mjml/v/stable
 [github issues]: https://img.shields.io/github/issues/Garagist/Garagist.Mjml
