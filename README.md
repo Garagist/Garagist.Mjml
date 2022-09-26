@@ -6,11 +6,11 @@
 
 ## Usage
 
-You can use this package with the offical API from [MJML] or with [Docker] and the [MJML image from Adrian Rudnik].
+You can use this package with the official API from [MJML] or with [Docker] and the [MJML image from Adrian Rudnik].
 
-### Use with the offical API from MJML
+### Use with the official API from MJML
 
-To use it with the MJML API, set `apiEndpoint` to `true`. You have also to set the `applicationID` and the `secretKey`. If you don't want to use the enviroments variables, you can simply over them in your `Settings.yaml` file.
+To use it with the MJML API, set `apiEndpoint` to `true`. You also have to set the `applicationID` and the `secretKey`. If you don't want to use the environment variables, you can simply overwrite them in your `Settings.yaml` file.
 
 ```yaml
 Garagist:
@@ -22,7 +22,7 @@ Garagist:
 
 ### Use with docker
 
-Simply set the enviroment variable `MJML_API_ENDPOINT`, or set it in your `Settings.yaml`:
+Set the enviroment variable `MJML_API_ENDPOINT`, or set it in your `Settings.yaml`:
 
 ```yaml
 Garagist:
@@ -32,7 +32,7 @@ Garagist:
 
 ### Development with ddev
 
-If you use [ddev] for development you can use following configuration:
+If you use [ddev] for development, you can use the following configuration:
 
 ```yaml
 version: "3.6"
@@ -58,7 +58,7 @@ After that, your MJML endpoint is something like `ddev-DDEV_SITENAME-mjml:80`
 
 ## Mixin to hide nodes
 
-This package adds a node type mixin [`Garagist.Mjml:Mixin.Visibility`]. With this you are able to show content nodes
+This package adds a node type mixin [`Garagist.Mjml:Mixin.Visibility`]. With this, you can show content nodes
 only on the website or in the newsletter. Just add the mixin to your content nodes:
 
 ```yaml
@@ -69,11 +69,11 @@ Foo.Bar:Content.Text:
 
 ## Fusion prototypes
 
-This package adds several Fusion prototypes for an easier integration of your `mjml` markup. Let's start with the small ones:
+This package adds several Fusion prototypes for easier integration of your `MJML` markup. Let's start with the small ones:
 
 ### [`Garagist.Mjml:Presentation.Spacer`]
 
-This is great for add spacer between elements. If you want to add a colored, full-width bar with the height of 40px you can do it like that:
+This is great for adding a spacer between elements. If you want to add a colored, full-width bar with a height of 40px, you can do it like that:
 
 ```elm
 <Garagist.Mjml:Presentation.Spacer fullWidth={true} height={40} background-color="#00adee" />
