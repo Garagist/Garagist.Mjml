@@ -80,6 +80,7 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
 
     colors = ${Configuration.Setting('Garagist.Mjml.theme.colors')}
     fontSize = ${Configuration.Setting('Garagist.Mjml.theme.fontSize')}
+    fontWeight = ${Configuration.Setting('Garagist.Mjml.theme.fontWeight')}
     defaults = ${Configuration.Setting('Garagist.Mjml.theme.defaults')}
 
     renderer = Neos.Fusion:Http.Message {
@@ -108,6 +109,12 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
                         >
                             <mj-class @if={!Type.isArray(item)} name={"text-" + itemKey} font-size={item + 'px'} />
                             <mj-class @if={Type.isArray(item)} name={"text-" + itemKey} font-size={item.pixel + 'px'} line-height={item.lineHeight} />
+                        </Neos.Fusion:Loop>
+                        <Neos.Fusion:Loop
+                            @if={Carbon.Array.check(props.fontWeight)}
+                            items={props.fontWeight}
+                        >
+                            <mj-class name={"font" + itemKey} font-weight={item} />
                         </Neos.Fusion:Loop>
                         <Neos.Fusion:Loop
                             @if={Carbon.Array.check(props.colors)}
