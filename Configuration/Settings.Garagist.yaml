@@ -35,7 +35,7 @@ Garagist:
           700: '#374151'
           800: '#1f2937'
           900: '#111827'
-      font-size:
+      fontSize:
         xs:
           pixel: 12
           lineHeight: 16px
