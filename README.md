@@ -4,7 +4,7 @@
 
 [MJML] is a markup language to build responsive email templates by providing a semantic syntax and a rich standard component library.
 
-This package adds the Eel Helper for compiling `MJML` markup as well as some Fusion prototypes which allow to use TailwindCSS like classes. But more about that later.
+This package adds the Eel Helper for compiling `MJML` markup as well as some Fusion prototypes which allow to use [TailwindCSS] like classes. But more about that later.
 
 ## Usage
 
@@ -151,7 +151,7 @@ Garagist:
           dark: "#0e7490"
 ```
 
-`Mjml.theme('colors.tahiti')` will return `#06b6d4` as this is the default value. The other values like `Mjml.theme('colors.tahiti.dark')` etc. will return the corresponding color. In short, it works similar to the [`theme()`] function in TailwindCSS.
+`Mjml.theme('colors.tahiti')` will return `#06b6d4` as this is the default value. The other values like `Mjml.theme('colors.tahiti.dark')` etc. will return the corresponding color. In short, it works similar to the [`theme()`] function in [TailwindCSS].
 
 [packagist]: https://packagist.org/packages/garagist/mjml
 [latest stable version]: https://poser.pugx.org/garagist/mjml/v/stable
@@ -180,3 +180,4 @@ Garagist:
 [`garagist.mjml:presentation.page`]: Resources/Private/Fusion/Presentation/Page.fusion
 [`garagist.mjml:page`]: Resources/Private/Fusion/Component/Page.fusion
 [`theme()`]: https://tailwindcss.com/docs/functions-and-directives#theme
+[tailwindcss]: https://tailwindcss.com
