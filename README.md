@@ -4,6 +4,8 @@
 
 [MJML] is a markup language to build responsive email templates by providing a semantic syntax and a rich standard component library.
 
+This package adds the Eel Helper for compiling `MJML` markup as well as some Fusion prototypes which allow to use TailwindCSS like classes. But more about that later.
+
 ## Usage
 
 You can use this package with the official API from [MJML] or with [Docker] and the [MJML image from Adrian Rudnik].
