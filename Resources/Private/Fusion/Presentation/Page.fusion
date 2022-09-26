@@ -73,7 +73,7 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
     content = null
 
     # Add the markup for the tracking pixel
-    trackingPixel = ${Configuration.Setting('Garagist.Mjml.options.trackingPixel')}
+    trackingPixel = ${Configuration.Setting('Garagist.Mjml.trackingPixel')}
 
     # Debug url for logging
     debugUrl = null

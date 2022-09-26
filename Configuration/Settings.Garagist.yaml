@@ -10,6 +10,10 @@ Garagist:
     # Can be true, false or 'comment'
     debugOutputMode: true
 
+    # Set the tracking pixel for the email
+    # If you use Garagist.Mautic, there is no need to set this, as it will be set automatically
+    trackingPixel: false
+
     theme:
       defaults:
         color: '#000'
