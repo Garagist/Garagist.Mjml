@@ -114,7 +114,7 @@ prototype(Garagist.Mjml:Presentation.Page) < prototype(Neos.Fusion:Component) {
                             @if={Carbon.Array.check(props.fontWeight)}
                             items={props.fontWeight}
                         >
-                            <mj-class name={"font" + itemKey} font-weight={item} />
+                            <mj-class name={"font-" + itemKey} font-weight={item} />
                         </Neos.Fusion:Loop>
                         <Neos.Fusion:Loop
                             @if={Carbon.Array.check(props.colors)}
