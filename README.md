@@ -6,6 +6,16 @@
 
 This package adds the Eel Helper for compiling `MJML` markup as well as some Fusion prototypes which allow to use [TailwindCSS] like classes. But more about that later.
 
+## Installation
+
+Add the package in your site package:
+
+```bash
+composer require --no-update garagist/mjml
+```
+
+The run `composer update` in your project root.
+
 ## Usage
 
 You can use this package with the official API from [MJML] or with [Docker] and the [MJML image from Adrian Rudnik].
