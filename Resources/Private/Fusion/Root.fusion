@@ -8,3 +8,18 @@ root {
     }
     @cache.entryIdentifier.mjml = ${request.arguments.mjml ? 'mjml' : 'default'}
 }
+
+mjml = Neos.Fusion:Case {
+    canRender {
+        condition = Neos.Fusion:CanRender {
+            type = ${node.nodeType.name + '.Mjml'}
+        }
+        type = ${node.nodeType.name + '.Mjml'}
+    }
+    notSet {
+        condition = true
+        renderer = Carbon.Notification:Document {
+            content = ${Translation.translate('editPreviewMode.noSet', 'No HTML newsletter output is configured for this page type', [], 'Main', 'Garagist.Mjml')}
+        }
+    }
+}

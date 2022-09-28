@@ -7,7 +7,16 @@ Neos:
       translation:
         autoInclude:
           Garagist.Mjml:
+            - 'Main'
             - 'NodeTypes/*'
+      editPreviewModes:
+        mjml:
+          isEditingMode: false
+          isPreviewMode: true
+          fusionRenderingPath: 'mjml'
+          title: 'Garagist.Mjml:Main:editPreviewMode'
+          width: 1024
+          backgroundColor: '#222'
   Fusion:
     defaultContext:
       'Mjml': 'Garagist\Mjml\Eel\MjmlHelper'

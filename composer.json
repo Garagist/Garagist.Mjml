@@ -7,7 +7,8 @@
         "php": "^8.0",
         "neos/neos": "^7.3 || ^8.0",
         "garagist/plaintext": "^0.1",
-        "carbon/eel": "^2.0"
+        "carbon/eel": "^2.0",
+        "carbon/notification": "^2.4"
     },
     "suggest": {
         "garagist/mautic": "To use the Mautic integration"
