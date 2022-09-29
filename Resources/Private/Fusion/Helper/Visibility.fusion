@@ -4,6 +4,7 @@ prototype(Garagist.Mjml:Helper.Visibility) < prototype(Neos.Fusion:Component) {
     visibility = ${q(this.node).property('mjmlVisibility')}
 
     inBackend = ${this.node.context.inBackend}
+    onNewsletter = ${!!request.arguments.mjml || !!request.arguments.plaintext}
 
     renderer = Neos.Fusion:Case {
         showInBackend {
@@ -12,11 +13,11 @@ prototype(Garagist.Mjml:Helper.Visibility) < prototype(Neos.Fusion:Component) {
         }
         showOnlyOnNewsletter {
             condition = ${props.visibility == 'newsletter'}
-            renderer = ${!!request.arguments.mjml || !!request.arguments.plaintext}
+            renderer = ${props.onNewsletter}
         }
         showOnlyOnWebsite {
             condition = ${props.visibility == 'website'}
-            renderer = ${!request.arguments.mjml && !request.arguments.plaintext}
+            renderer = ${!props.onNewsletter}
         }
         default {
             condition = true

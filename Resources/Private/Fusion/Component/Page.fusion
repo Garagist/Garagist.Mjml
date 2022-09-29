@@ -46,6 +46,11 @@ prototype(Garagist.Mjml:Page) < prototype(Neos.Fusion:Component) {
         }
     }
 
+    prototype(Garagist.Mjml:Helper.Visibility) {
+        inBackend = false
+        onNewsletter = true
+    }
+
     prototype(Neos.Neos:NodeUri) {
         absolute = true
     }
