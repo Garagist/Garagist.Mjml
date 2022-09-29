@@ -10,6 +10,12 @@ prototype(Garagist.Mjml:Page) < prototype(Neos.Fusion:Component) {
         additionalParams = ${{mjml: true}}
     }
 
+    @context {
+        documentNode = ${q(documentNode).context({'workspaceName': 'live'}).get(0)}
+        node = ${q(node).context({'workspaceName': 'live'}).get(0)}
+        site = ${q(site).context({'workspaceName': 'live'}).get(0)}
+    }
+
     prototype(Neos.Neos:ContentCase) {
         mjml {
             condition = Neos.Fusion:CanRender {
