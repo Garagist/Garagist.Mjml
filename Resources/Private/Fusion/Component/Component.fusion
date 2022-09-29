@@ -1,0 +1,6 @@
+prototype(Garagist.Mjml:Component) < prototype(Neos.Fusion:Component) {
+    @if.mjmlVisibility = Garagist.Mjml:Helper.Visibility {
+        inBackend = false
+        onNewsletter = true
+    }
+}

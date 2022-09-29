@@ -193,6 +193,16 @@ Garagist:
 With `<mj-text mj-class="font-normal">` you'll set the font weight to `400`.
 With `<mj-text mj-class="font-semibold">` you'll set the font weight to `600`.
 
+### [`Garagist.Mjml:Helper.Visibility`]
+
+This small helper reads the property `mjmlVisibility` (from the mixin `Garagist.Mjml:Mixin.Visibility`) and returns
+`true` or `false` based on the arguments in the request and if the user is in the backend. This prototype is is added
+to `Neos.Neos:ContentComponent` and `Neos.Neos:Content`) automatically.
+
+### [`Garagist.Mjml:Component`]
+
+This prototype uses `Neos.Fusion:Component` and adds the helper [`Garagist.Mjml:Helper.Visibility`].
+
 ### [`Garagist.Mjml:Page`]
 
 This prototype uses [`Garagist.Mjml:Presentation.Page`] and sets the following properties:
@@ -270,6 +280,8 @@ Garagist:
 [`neos.neos:imageuri`]: https://neos.readthedocs.io/en/stable/References/NeosFusionReference.html#neos-neos-imageuri
 [`garagist.mjml:presentation.page`]: Resources/Private/Fusion/Presentation/Page.fusion
 [`garagist.mjml:page`]: Resources/Private/Fusion/Component/Page.fusion
+[`garagist.mjml:component`]: Resources/Private/Fusion/Component/Component.fusion
+[`garagist.mjml:helper.visibility`]: Resources/Private/Fusion/Helper/Visibility.fusion
 [`theme()`]: https://tailwindcss.com/docs/functions-and-directives#theme
 [tailwindcss]: https://tailwindcss.com
 [garagist.mautic]: https://github.com/Garagist/Garagist.Mautic
