@@ -2,19 +2,21 @@
 
 [![Latest stable version]][packagist] [![GitHub stars]][stargazers] [![GitHub watchers]][subscription] [![GitHub license]][license] [![GitHub issues]][issues] [![GitHub forks]][network]
 
-[MJML] is a markup language to build responsive email templates by providing a semantic syntax and a rich standard component library.
+[MJML] is a markup language to build responsive email templates by providing a semantic syntax and a rich standard
+component library.
 
-This package adds the Eel Helper for compiling `MJML` markup as well as some Fusion prototypes which allow to use [TailwindCSS] like classes. But more about that later.
+This package adds the Eel Helper for compiling `MJML` markup as well as some Fusion prototypes, which allow using
+[TailwindCSS] like classes. But more about that later.
 
 ## Installation
 
-Add the package in your site package:
+Add the package to your site package:
 
 ```bash
 composer require --no-update garagist/mjml
 ```
 
-The run `composer update` in your project root.
+Then run `composer update` in your project root.
 
 ## Usage
 
@@ -22,7 +24,8 @@ You can use this package with the official API from [MJML] or with [Docker] and 
 
 ### Use with the official API from MJML
 
-To use it with the MJML API, set `apiEndpoint` to `true`. You also have to set the `applicationID` and the `secretKey`. If you don't want to use the environment variables, you can simply overwrite them in your `Settings.yaml` file.
+To use it with the MJML API, set `apiEndpoint` to `true`. You must also set the `applicationID` and the `secretKey`.
+If you don't want to use the environment variables, you can simply overwrite them in your `Settings.yaml` file.
 
 ```yaml
 Garagist:
@@ -85,7 +88,8 @@ This package adds several Fusion prototypes for easier integration of your `MJML
 
 ### [`Garagist.Mjml:Presentation.Spacer`]
 
-This is great for adding a spacer between elements. If you want to add a colored, full-width bar with a height of 40px, you can do it like that:
+This prototype is great for adding a spacer between elements. If you want to add a colored, full-width bar with a height
+of 40px, you can do it like that:
 
 ```elm
 <Garagist.Mjml:Presentation.Spacer fullWidth={true} height={40} background-color="#00adee" />
@@ -95,7 +99,7 @@ All properties except `fullWidth` and `height` are transferred to the [`mj-secti
 
 ### [`Garagist.Mjml:Presentation.Image`]
 
-This is a small helper to render [`mj-image`] or [`mj-carousel-image`]. Inside a [`mj-carousel`],
+This prototype is a small helper to render [`mj-image`] or [`mj-carousel-image`]. Inside a [`mj-carousel`],
 set `carousel` to `true` to render a [`mj-carousel-image`].
 
 #### The `image` property
@@ -112,7 +116,8 @@ All properties except `carousel`, `image` and `thumbnail` are transferred to [`m
 
 ### [`Garagist.Mjml:Presentation.Page`]
 
-This is the heart of the Fusion MJML prototypes. It generates the `MJML` code, which is compiled to `HTML`. It has the following properties:
+This is the heart of the Fusion MJML prototypes. It generates the `MJML` code, which is compiled to `HTML`.
+It has the following properties:
 
 | Property          | Description                                                                                                                                                                                                                            |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -131,10 +136,10 @@ This is the heart of the Fusion MJML prototypes. It generates the `MJML` code, w
 | `content`         | The content section of the email. Defaults to `null`                                                                                                                                                                                   |
 | `trackingPixel`   | Add the markup for the tracking pixel. If you use [Garagist.Mautic], there is no need to set this, as it will be set automatically. Read the setting `Garagist.Mjml.trackingPixel`                                                     |
 | `debugUrl`        | Debug url for logging. Defaults to `null`                                                                                                                                                                                              |
-| `defaults`        | Set some default CSS setting for the email. Take a look to [`Settings.Garagist.yaml`] to see the defaults. Read the setting `Garagist.Mjml.theme.defaults`                                                                             |
+| `defaults`        | Set some default CSS setting for the email. Look at [`Settings.Garagist.yaml`] to see the defaults. Read the setting `Garagist.Mjml.theme.defaults`                                                                                    |
 | `colors`          | Adds colors as [`mj-class`]. More about this below. Take a look to [`Settings.Garagist.yaml`] to see the defaults. Read the setting `Garagist.Mjml.theme.colors`                                                                       |
-| `fontSize`        | Adds font sizes as [`mj-class`]. More about this below. Take a look to [`Settings.Garagist.yaml`] to see the defaults. Read the setting `Garagist.Mjml.theme.fontSize`                                                                 |
-| `fontWeight`      | Adds font weights as [`mj-class`]. More about this below. Take a look to [`Settings.Garagist.yaml`] to see the defaults. Read the setting `Garagist.Mjml.theme.fontWeight`                                                             |
+| `fontSize`        | Adds font sizes as [`mj-class`]. More about this below. Look at [`Settings.Garagist.yaml`] to see the defaults. Read the setting `Garagist.Mjml.theme.fontSize`                                                                        |
+| `fontWeight`      | Adds font weights as [`mj-class`]. More about this below. Look at [`Settings.Garagist.yaml`] to see the defaults. Read the setting `Garagist.Mjml.theme.fontWeight`                                                                    |
 
 #### Colors
 
@@ -152,7 +157,9 @@ Garagist:
           dark: "#0e7490"
 ```
 
-With `<mj-text mj-class="text-black">` the text color is set to black. With `<mj-text mj-class="text-tahiti-light">` the text color is set to `#67e8f9`. A special case is the `DEFAULT` value: This can be reached without specifying `DEFAULT`: `<mj-text mj-class="text-tahiti">`.
+With `<mj-text mj-class="text-black">` the text color is set to black. With `<mj-text mj-class="text-tahiti-light">` the
+text color is set to `#67e8f9`. A special case is the `DEFAULT` value: This can be reached without specifying
+`DEFAULT`: `<mj-text mj-class="text-tahiti">`.
 
 - `text-COLOR-PATH` sets `color`
 - `bg-COLOR-PATH` sets `background-color`
@@ -179,7 +186,7 @@ With `<mj-text mj-class="text-sm">` you'll set the font size to 14 pixel.
 
 #### Font weights
 
-Adds multiple [`mj-class`] tags for each set font weight. Let's assume the following configuration:
+Adds multiple [`mj-class`] tags for each set font-weight. Let's assume the following configuration:
 
 ```yaml
 Garagist:
@@ -215,7 +222,7 @@ This prototype uses [`Garagist.Mjml:Presentation.Page`] and sets the following p
 - `title`: Try to get the property `titleOverride` or `title` from the `documentNode`
 - `debugUrl`: Generates the URL of the current URL for the log output
 
-Furthermore, various prototypes will be adapted:
+Furthermore, various prototypes will be adopted:
 
 - `Neos.Neos:ContentCase`
   - Checks if there is a prototype with `.Mjml` (e.g. `Foo.Bar:Content.Text.Mjml`) and outputs it.
@@ -239,7 +246,8 @@ Compile the `mjml` string to HTML. The `url` is for the log output.
 
 ### `Mjml.theme(path)`
 
-Get the setting from `Garagist.Mjml.theme`. It is similar to the eel helper `Configuration.setting` with only special treatment for `DEFAULT` values: If you have set this colors:
+Get the setting from `Garagist.Mjml.theme`. It is similar to the eel helper `Configuration.setting` with only special
+treatment for `DEFAULT` values: If you have set these colors:
 
 ```yaml
 Garagist:
@@ -252,7 +260,9 @@ Garagist:
           dark: "#0e7490"
 ```
 
-`Mjml.theme('colors.tahiti')` will return `#06b6d4` as this is the default value. The other values like `Mjml.theme('colors.tahiti.dark')` etc. will return the corresponding color. In short, it works similar to the [`theme()`] function in [TailwindCSS].
+`Mjml.theme('colors.tahiti')` will return `#06b6d4` as this is the default value. The other values like
+`Mjml.theme('colors.tahiti.dark')` etc. will return the corresponding color. In short, it works similar to the
+[`theme()`] function in [TailwindCSS].
 
 [packagist]: https://packagist.org/packages/garagist/mjml
 [latest stable version]: https://poser.pugx.org/garagist/mjml/v/stable
